@@ -62,60 +62,136 @@
   });
 
   /* --- Tiroir panier / paiement ------------------------------------------- */
-  var overlay   = document.getElementById('drawer-overlay');
-  var drawer    = document.getElementById('cart-drawer');
-  var closeBtn  = document.getElementById('drawer-close');
-  var removeBtn = document.getElementById('drawer-remove');
+  var overlay  = document.getElementById('drawer-overlay');
+  var drawer   = document.getElementById('cart-drawer');
+  var closeBtn = document.getElementById('drawer-close');
 
-  /* Lien de paiement associe au palier de prix le plus proche */
+  /* Lien de paiement associe au total du panier (paliers croissants) */
   var PRICE_LINKS = [
-    { max: 5,        url: 'https://t.trklinkx.com/click?pid=4784&offer_id=13086&sub3=2lujelly' },
-    { max: 15,       url: 'https://t.trklinkx.com/click?pid=4784&offer_id=13179&sub3=lujelly' },
-    { max: 35,       url: 'https://t.trklinkx.com/click?pid=4784&offer_id=13057&sub3=3LUJELLY' },
-    { max: Infinity, url: 'https://t.trklinkx.com/click?pid=4784&offer_id=12355&sub3=5LUJELLY' }
+    { max: 5,        url: 'https://t.trklinkx.com/click?pid=4784&offer_id=13086&sub3=2lujelly'  },  /* 2€ */
+    { max: 15,       url: 'https://t.trklinkx.com/click?pid=4784&offer_id=13179&sub3=lujelly'    },  /* 10€ */
+    { max: 35,       url: 'https://t.trklinkx.com/click?pid=4784&offer_id=13057&sub3=3LUJELLY'   },  /* 20€ */
+    { max: 65,       url: 'https://t.trklinkx.com/click?pid=4784&offer_id=12355&sub3=Lujelly'    },  /* 49,99€ */
+    { max: 90,       url: 'https://t.trklinkx.com/click?pid=4784&offer_id=12541&sub3=Lujelly'    },  /* 79,99€ */
+    { max: Infinity, url: 'https://t.trklinkx.com/click?pid=4784&offer_id=12913&sub3=10Lujelly'  }   /* 99,99€ */
   ];
-  function linkForPrice(price) {
-    for (var i = 0; i < PRICE_LINKS.length; i++) { if (price <= PRICE_LINKS[i].max) return PRICE_LINKS[i].url; }
+  function linkForTotal(total) {
+    for (var i = 0; i < PRICE_LINKS.length; i++) { if (total <= PRICE_LINKS[i].max) return PRICE_LINKS[i].url; }
     return PRICE_LINKS[PRICE_LINKS.length - 1].url;
   }
-  window.jcLinkForPrice = linkForPrice;
+  window.jcLinkForTotal = linkForTotal;
+
+  function euro(n) { return n.toFixed(2).replace('.', ',') + '€'; }
 
   function readCart() {
     try { return JSON.parse(localStorage.getItem('jc_cart') || '[]'); } catch (e) { return []; }
   }
+  function writeCart(cart) {
+    try { localStorage.setItem('jc_cart', JSON.stringify(cart)); } catch (e) { /* stockage indisponible */ }
+  }
+  window.jcReadCart = readCart;
+  window.jcWriteCart = writeCart;
+
+  function cartTotal(cart) {
+    return cart.reduce(function (sum, item) { return sum + (item.priceValue || 0) * (item.qty || 1); }, 0);
+  }
+  function cartCount(cart) {
+    return cart.reduce(function (sum, item) { return sum + (item.qty || 1); }, 0);
+  }
 
   function paintCount() {
-    var n = readCart().length;
+    var n = cartCount(readCart());
     document.querySelectorAll('[data-cart-count]').forEach(function (el) { el.textContent = n; });
+  }
+
+  /* Ajoute un produit au panier (ou incremente sa quantite s'il y est deja) */
+  function addToCart(product) {
+    var cart = readCart();
+    var existing = cart.filter(function (it) { return it.slug === product.slug; })[0];
+    if (existing) {
+      existing.qty = (existing.qty || 1) + 1;
+    } else {
+      cart.push({
+        slug: product.slug,
+        name: product.name,
+        price: product.price,
+        priceValue: product.priceValue,
+        img: product.img,
+        qty: 1
+      });
+    }
+    writeCart(cart);
+    document.dispatchEvent(new CustomEvent('jc:cart-changed'));
+    return cart;
+  }
+  window.jcAddToCart = addToCart;
+
+  function changeQty(slug, delta) {
+    var cart = readCart();
+    var idx = -1;
+    cart.forEach(function (it, i) { if (it.slug === slug) idx = i; });
+    if (idx === -1) return;
+    cart[idx].qty = (cart[idx].qty || 1) + delta;
+    if (cart[idx].qty <= 0) cart.splice(idx, 1);
+    writeCart(cart);
+    renderDrawer();
+    document.dispatchEvent(new CustomEvent('jc:cart-changed'));
+  }
+
+  function removeItem(slug) {
+    var cart = readCart().filter(function (it) { return it.slug !== slug; });
+    writeCart(cart);
+    renderDrawer();
+    document.dispatchEvent(new CustomEvent('jc:cart-changed'));
   }
 
   function renderDrawer() {
     var cart     = readCart();
-    var itemBox  = document.getElementById('drawer-cart-item');
+    var listEl   = document.getElementById('drawer-items');
     var emptyMsg = document.getElementById('drawer-empty');
     var totalBox = document.getElementById('drawer-total');
     var checkout = document.getElementById('drawer-checkout');
-    if (!itemBox) return;
+    if (!listEl) return;
+
+    listEl.innerHTML = '';
 
     if (cart.length) {
-      var item = cart[0];
-      var img = document.getElementById('drawer-item-img');
-      if (img) { img.src = item.img || ''; img.alt = item.name || ''; }
-      document.getElementById('drawer-item-name').textContent = item.name || '';
-      document.getElementById('drawer-item-price').textContent = item.price || '';
-      itemBox.hidden = false;
       if (emptyMsg) emptyMsg.hidden = true;
+      cart.forEach(function (item) {
+        var row = document.createElement('div');
+        row.className = 'drawer__item';
+        row.innerHTML =
+          '<img src="' + item.img + '" alt="' + item.name + '">' +
+          '<div class="drawer__item-info">' +
+            '<p class="drawer__item-name">' + item.name + '</p>' +
+            '<p class="drawer__item-price">' + item.price + '</p>' +
+            '<div class="drawer__qty">' +
+              '<button type="button" class="drawer__qty-btn" data-dec aria-label="Retirer un exemplaire">−</button>' +
+              '<span>' + (item.qty || 1) + '</span>' +
+              '<button type="button" class="drawer__qty-btn" data-inc aria-label="Ajouter un exemplaire">+</button>' +
+            '</div>' +
+            '<button type="button" class="drawer__remove" data-remove>Supprimer</button>' +
+          '</div>';
+        row.querySelector('[data-inc]').addEventListener('click', function () { changeQty(item.slug, 1); });
+        row.querySelector('[data-dec]').addEventListener('click', function () { changeQty(item.slug, -1); });
+        row.querySelector('[data-remove]').addEventListener('click', function () { removeItem(item.slug); });
+        listEl.appendChild(row);
+      });
+    } else {
+      if (emptyMsg) emptyMsg.hidden = false;
+    }
+
+    var total = cartTotal(cart);
+    if (cart.length) {
       if (totalBox) {
         totalBox.hidden = false;
-        document.getElementById('drawer-total-amount').textContent = item.price || '';
+        document.getElementById('drawer-total-amount').textContent = euro(total);
       }
       if (checkout) {
         checkout.hidden = false;
-        checkout.href = linkForPrice(item.priceValue || 0);
+        checkout.href = linkForTotal(total);
       }
     } else {
-      itemBox.hidden = true;
-      if (emptyMsg) emptyMsg.hidden = false;
       if (totalBox) totalBox.hidden = true;
       if (checkout) checkout.hidden = true;
     }
@@ -145,14 +221,8 @@
   if (overlay) overlay.addEventListener('click', closeDrawer);
   if (closeBtn) closeBtn.addEventListener('click', closeDrawer);
   document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeDrawer(); });
-  if (removeBtn) {
-    removeBtn.addEventListener('click', function () {
-      localStorage.setItem('jc_cart', '[]');
-      renderDrawer();
-      document.dispatchEvent(new CustomEvent('jc:cart-changed'));
-    });
-  }
   document.addEventListener('jc:open-cart', openDrawer);
+  document.addEventListener('jc:cart-changed', paintCount);
 
   /* --- Compteur du panier (partage entre les pages) ----------------------- */
   paintCount();

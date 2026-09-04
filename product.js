@@ -1,11 +1,10 @@
 /* Fiche produit : remplissage depuis products.js selon ?p=<slug>.
    Si le produit n'a pas de fiche detaillee, on retombe sur les donnees de la
    grille categorie (nom, prix, visuel) sans inventer de description.
-   Commande limitee a 1 article. */
+   Le panier accepte plusieurs articles ; le lien de paiement est choisi
+   selon le total du panier (voir script.js). */
 (function () {
   'use strict';
-
-  var MAX_ARTICLES = 1;
 
   var params = new URLSearchParams(location.search);
   var slug = params.get('p');
@@ -127,55 +126,30 @@
     rail.appendChild(a);
   });
 
-  /* --- Panier : 1 article maximum par commande ---------------------------- */
-  function readCart() {
-    try { return JSON.parse(localStorage.getItem('jc_cart') || '[]'); } catch (e) { return []; }
-  }
-  function writeCart(c) {
-    try { localStorage.setItem('jc_cart', JSON.stringify(c)); } catch (e) { /* stockage indisponible */ }
-  }
-  function paintCount() {
-    var n = readCart().length;
-    document.querySelectorAll('[data-cart-count]').forEach(function (el) { el.textContent = n; });
-  }
-
+  /* --- Panier : plusieurs articles possibles ------------------------------ */
   var btn = document.querySelector('[data-add-cart]');
   var note = document.querySelector('[data-added]');
+  var addedTimer;
 
-  function refreshButton() {
-    var cart = readCart();
-    var mine = cart.length && cart[0].slug === p.slug;
-
-    if (cart.length >= MAX_ARTICLES) {
-      btn.disabled = true;
-      btn.textContent = mine ? 'Déjà dans votre panier' : 'Panier complet';
-      note.hidden = false;
-      note.textContent = mine
-        ? 'Limité à 1 article par commande.'
-        : 'Votre panier contient déjà « ' + cart[0].name +' ». Limité à 1 article par commande.';
-    } else {
-      btn.disabled = false;
-      btn.textContent = 'Ajouter au panier';
-      note.hidden = true;
-    }
-    paintCount();
+  function showAdded() {
+    note.hidden = false;
+    note.textContent = 'Ajouté à votre panier !';
+    clearTimeout(addedTimer);
+    addedTimer = setTimeout(function () { note.hidden = true; }, 2500);
   }
 
   btn.addEventListener('click', function () {
-    if (readCart().length >= MAX_ARTICLES) return;
-    writeCart([{
-      slug: p.slug,
-      name: p.name,
-      price: p.priceLabel || euro(p.price),
-      priceValue: p.price,
-      img: p.imgs[0]
-    }]);
-    refreshButton();
+    if (window.jcAddToCart) {
+      window.jcAddToCart({
+        slug: p.slug,
+        name: p.name,
+        price: p.priceLabel || euro(p.price),
+        priceValue: p.price,
+        img: p.imgs[0]
+      });
+    }
+    showAdded();
     if (window.jcOpenDrawer) window.jcOpenDrawer();
     else document.dispatchEvent(new CustomEvent('jc:open-cart'));
   });
-
-  document.addEventListener('jc:cart-changed', refreshButton);
-
-  refreshButton();
 })();

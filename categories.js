@@ -3,6 +3,15 @@
 window.IMG_PREFIX = 'https://cdn11.bigcommerce.com/s-dt3q8edcif/images/stencil/500x500/products/';
 
 window.CATEGORIES = {
+  'packs-jellypin': {
+    title: 'PACKS JELLYPIN', crumbs: ['Accueil', 'Collections'], count: '3',
+    intro: 'Plusieurs Jellypins réunis dans un seul pack, à prix fixe et malin.',
+    rows: [
+      "pack-duo-fruits|Pack Duo Amuseables Fruits|49,99€|Pack|329/15945/A6PEACH__95074.1763051157.jpg",
+      "pack-trio-jardin|Pack Trio Amuseables Jardin|49,99€|Pack|1867/7899/A6PCT__55754.1.jpg",
+      "pack-surprise-jellypin|Pack Surprise Jellypin|49,99€|Pack|1951/16112/A4SWEE__10188.1765311964.jpg"
+    ]
+  },
   'nouveautes': {
     title: 'NOUVEAUTÉS', crumbs: ['Accueil'], count: '40',
     intro: 'Les tout derniers Jellypins, fraîchement arrivés dans la famille.',

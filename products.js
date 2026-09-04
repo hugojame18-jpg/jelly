@@ -1,6 +1,65 @@
 /* Donnees produits — reprises de fr.jellypin.com */
 window.PRODUCTS = [
   {
+    slug: 'pack-duo-fruits',
+    name: 'Pack Duo Amuseables Fruits',
+    sku: 'PACK-DUO01',
+    price: 49.99,
+    priceLabel: '49,99€',
+    dim: 'Pack de 2 peluches',
+    crumbs: ['Accueil', 'Collections', 'Packs Jellypin'],
+    reviews: 0,
+    badge: 'Pack',
+    desc: [
+      'Deux Amuseables au prix d’un seul câlin en plus ! Ce pack réunit deux peluches fruits parmi les plus adoptées de la collection, prêtes à rejoindre votre panier de fruits imaginaire.',
+      'Un cadeau tout trouvé, ou une bonne excuse pour agrandir sa propre collection sans culpabiliser sur le prix.'
+    ],
+    imgs: [
+      'https://cdn11.bigcommerce.com/s-dt3q8edcif/images/stencil/1000w/products/329/15945/A6PEACH__95074.1763051157.jpg',
+      'https://cdn11.bigcommerce.com/s-dt3q8edcif/images/stencil/1951/16112/A4SWEE__10188.1765311964.jpg'
+    ]
+  },
+  {
+    slug: 'pack-trio-jardin',
+    name: 'Pack Trio Amuseables Jardin',
+    sku: 'PACK-TRIO01',
+    price: 49.99,
+    priceLabel: '49,99€',
+    dim: 'Pack de 3 peluches',
+    crumbs: ['Accueil', 'Collections', 'Packs Jellypin'],
+    reviews: 0,
+    badge: 'Pack',
+    desc: [
+      'Trois copains du potager réunis dans un seul pack : de quoi peupler toute une étagère de bonne humeur pour le prix d’une seule pièce premium.',
+      'Chaque Amuseables garde son propre caractère, mais ensemble ils forment la bande la plus attachante du jardin.'
+    ],
+    imgs: [
+      'https://cdn11.bigcommerce.com/s-dt3q8edcif/images/stencil/1867/7899/A6PCT__55754.1.jpg',
+      'https://cdn11.bigcommerce.com/s-dt3q8edcif/images/stencil/2071/17685/A6PAC__55004.1.png',
+      'https://cdn11.bigcommerce.com/s-dt3q8edcif/images/stencil/1000w/products/329/15945/A6PEACH__95074.1763051157.jpg'
+    ]
+  },
+  {
+    slug: 'pack-surprise-jellypin',
+    name: 'Pack Surprise Jellypin',
+    sku: 'PACK-SURP01',
+    price: 49.99,
+    priceLabel: '49,99€',
+    dim: 'Pack de 3 à 4 peluches surprises',
+    crumbs: ['Accueil', 'Collections', 'Packs Jellypin'],
+    reviews: 0,
+    badge: 'Pack',
+    desc: [
+      'Le pack le plus gourmand : une sélection surprise de 3 à 4 Amuseables parmi les best-sellers, à un prix imbattable pour se faire (ou faire) plaisir en grand.',
+      'Idéal pour découvrir la collection sans avoir à choisir un seul modèle.'
+    ],
+    imgs: [
+      'https://cdn11.bigcommerce.com/s-dt3q8edcif/images/stencil/1000w/products/1951/16112/A4SWEE__10188.1765311964.jpg',
+      'https://cdn11.bigcommerce.com/s-dt3q8edcif/images/stencil/2069/17691/A4SMR__90722.1.png',
+      'https://cdn11.bigcommerce.com/s-dt3q8edcif/images/stencil/329/15944/A6PEACH_10__12609.1763051156.jpg'
+    ]
+  },
+  {
     slug: 'amuseables-peach',
     name: 'Amuseables Peach',
     sku: 'A6PEACH',
