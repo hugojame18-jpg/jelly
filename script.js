@@ -61,6 +61,45 @@
     });
   });
 
+  /* --- Tiroir panier / paiement ------------------------------------------- */
+  var overlay = document.getElementById('drawer-overlay');
+  var drawer  = document.getElementById('cart-drawer');
+  var closeBtn = document.getElementById('drawer-close');
+
+  function openDrawer() {
+    if (!overlay || !drawer) return;
+    var cartItem = document.getElementById('drawer-cart-item');
+    var cartName = document.getElementById('drawer-item-name');
+    if (cartItem && cartName) {
+      try {
+        var c = JSON.parse(localStorage.getItem('jc_cart') || '[]');
+        if (c.length) {
+          cartName.textContent = c[0].name + ' — ' + c[0].price;
+          cartItem.hidden = false;
+        } else {
+          cartItem.hidden = true;
+        }
+      } catch (e) { cartItem.hidden = true; }
+    }
+    overlay.classList.add('open');
+    drawer.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeDrawer() {
+    if (!overlay || !drawer) return;
+    overlay.classList.remove('open');
+    drawer.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  document.querySelectorAll('[data-open-cart]').forEach(function (el) {
+    el.addEventListener('click', function (e) { e.preventDefault(); openDrawer(); });
+  });
+  if (overlay) overlay.addEventListener('click', closeDrawer);
+  if (closeBtn) closeBtn.addEventListener('click', closeDrawer);
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeDrawer(); });
+
   /* --- Compteur du panier (partage entre les pages) ----------------------- */
   var counters = document.querySelectorAll('[data-cart-count]');
   if (counters.length) {
