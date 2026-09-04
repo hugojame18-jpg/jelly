@@ -252,7 +252,7 @@ window.PRODUCTS = [
       'https://cdn11.bigcommerce.com/s-dt3q8edcif/images/stencil/1000w/products/331/7948/A6PIC_3__27958.1755712200.jpg',
       'https://cdn11.bigcommerce.com/s-dt3q8edcif/images/stencil/1000w/products/331/7941/A6PIC_10__27535.1755712199.jpg'
     ]
-  }
+  },
   {
     slug: 'starry-wizard-dragon',
     name: 'Starry Wizard Dragon',

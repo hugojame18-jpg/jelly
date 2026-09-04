@@ -1,4 +1,4 @@
-/* Page categorie : grille produits selon ?c=<cle> */
+﻿/* Page categorie : grille produits selon ?c=<cle> */
 (function () {
   'use strict';
 
@@ -38,10 +38,24 @@
 
   /* --- Grille produits ---------------------------------------------------- */
   var grid = document.querySelector('[data-grid]');
-  var rows = (cat.rows || []).map(function (r) {
-    var p = r.split('|');
-    return { slug: p[0], name: p[1], price: p[2], badge: p[3], img: PFX + p[4] };
-  });
+  /* Construire les lignes : soit depuis cat.rows, soit depuis PRODUCTS (mode dynamique) */
+  var rows;
+  if (cat.dynamic && window.PRODUCTS) {
+    var filterCat = cat.filterBadge || null;
+    var pool = window.PRODUCTS.filter(function(p) {
+      return filterCat ? p.badge === filterCat : true;
+    });
+    // Halloween en premier, puis le reste
+    pool.sort(function(a,b){ return (b.badge==='Halloween')-(a.badge==='Halloween'); });
+    rows = pool.map(function(p) {
+      return { slug: p.slug, name: p.name, price: p.priceLabel || (p.price.toFixed(2).replace('.',',')+'\u20ac'), badge: p.badge, img: p.imgs[0] };
+    });
+  } else {
+    rows = (cat.rows || []).map(function (r) {
+      var p = r.split('|');
+      return { slug: p[0], name: p[1], price: p[2], badge: p[3], img: (p[4] && p[4].match(/^https?:/) ? p[4] : PFX + p[4]) };
+    });
+  }
 
   if (!rows.length) {
     document.querySelector('[data-empty]').hidden = false;

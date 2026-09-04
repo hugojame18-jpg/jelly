@@ -46,6 +46,7 @@ window.CATEGORIES = {
   'tous-les-jellypins': {
     title: 'TOUS LES JELLYPINS', crumbs: ['Accueil'], count: '548',
     intro: 'Toute la famille Jellypin réunie au même endroit.',
+    dynamic: true,
     rows: [
       "albee-bee|Albee Bee|9,99€|De Retour en Stock|169/11610/HAP3BEE__12251.1.jpg",
       "amuseables-peanut-cat-outfit|Amuseables Peanut ‘Cat’|19,99€|Nouveauté|1867/7899/A6PCT__55754.1.jpg",
@@ -351,7 +352,7 @@ window.CATEGORIES = {
       ['Rentrée Scolaire', 'tous-les-jellypins'], ['Cadeaux pour les Gourmands', 'amuseables'],
       ['Découvrir les nouveautés estivales', 'nouveautes']
     ]
-  }
+  },
   'halloween': {
     title: 'HALLOWEEN', crumbs: ['Accueil', 'Collections'], count: '84',
     intro: 'Edition Halloween exclusive — 84 peluches collector a prix reduit, stock limite.',

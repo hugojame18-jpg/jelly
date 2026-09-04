@@ -1,4 +1,4 @@
-/* ==========================================================================
+﻿/* ==========================================================================
    Reproduction de la page d'accueil fr.jellypin.com
    ========================================================================== */
 
@@ -23,6 +23,7 @@ body{
   line-height:1.55;
   color:var(--ink);
   background:#fff;
+  overflow-x:hidden;
 }
 
 img{display:block;max-width:100%}
@@ -540,7 +541,8 @@ h1,h2,h3,p{margin:0}
 .acc__item summary::-webkit-details-marker{display:none}
 .acc__item summary::after{content:"+";float:right;font-size:18px;font-weight:400}
 .acc__item[open] summary::after{content:"\2013"}
-.acc__body{padding:0 0 20px;font-size:15px;line-height:1.8;color:var(--grey)}
+.acc__body{padding:0 0 20px;font-size:15px;line-height:1.8;color:var(--grey)  overflow-x:hidden;
+}
 .acc__body p+p{margin-top:14px}
 
 /* Avis --------------------------------------------------------------------- */
