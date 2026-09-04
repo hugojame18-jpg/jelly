@@ -175,5 +175,7 @@
     else document.dispatchEvent(new CustomEvent('jc:open-cart'));
   });
 
+  document.addEventListener('jc:cart-changed', refreshButton);
+
   refreshButton();
 })();
