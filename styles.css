@@ -1,5 +1,5 @@
 /* ==========================================================================
-   Reproduction de la page d'accueil fr.jellycat.com
+   Reproduction de la page d'accueil fr.jellypin.com
    ========================================================================== */
 
 :root{
@@ -32,7 +32,7 @@ h1,h2,h3,p{margin:0}
 
 .container{width:100%;max-width:var(--max);margin:0 auto;padding:0 20px}
 
-/* Bouton contour, style Jellycat -------------------------------------------- */
+/* Bouton contour, style Jellypin -------------------------------------------- */
 .btn{
   display:inline-block;
   padding:8px 36px;
@@ -106,7 +106,16 @@ h1,h2,h3,p{margin:0}
   pointer-events:none;
 }
 
-.logo img{width:190px;height:auto;margin:0 auto}
+.logo{display:block;text-align:center}
+.logo__mark{
+  display:inline-block;
+  font-size:30px;
+  font-weight:700;
+  letter-spacing:.01em;
+  line-height:1.1;
+  color:var(--ink);
+}
+.logo__mark::first-letter{color:var(--burgundy)}
 
 .header__actions{
   display:flex;
@@ -560,7 +569,7 @@ h1,h2,h3,p{margin:0}
 @media (max-width:900px){
   .header__top{grid-template-columns:1fr auto 1fr;gap:12px}
   .search{max-width:200px}
-  .logo img{width:150px}
+  .logo__mark{font-size:24px}
   .nav ul{gap:4px 18px}
   .nav a{font-size:12px}
   .hero__slide{flex-direction:column;min-height:0}

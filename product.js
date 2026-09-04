@@ -39,7 +39,7 @@
   };
 
   /* --- Entete de fiche ---------------------------------------------------- */
-  document.title = p.name + ' – Produit Officiel Jellycat';
+  document.title = p.name + ' – Produit Officiel Jellypin';
   setAll('data-name', p.name);
   setAll('data-price', p.priceLabel || euro(p.price));
   setAll('data-sku', p.sku || '—');

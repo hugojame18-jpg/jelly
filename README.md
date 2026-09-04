@@ -1,16 +1,16 @@
-# Reproduction de fr.jellycat.com
+# Jellypin
 
-Reproduction statique de la boutique en ligne Jellycat France, réalisée à des fins
-d'exercice et d'apprentissage front-end (HTML / CSS / JavaScript, sans framework
-ni dépendance).
+Boutique en ligne fictive **Jellypin**, en HTML / CSS / JavaScript, sans framework
+ni dépendance. Exercice de front-end : la structure, la mise en page et les
+comportements sont modelés sur une boutique de peluches existante.
 
 > **Avertissement**
-> Ce dépôt n'est ni affilié à, ni approuvé par Jellycat Limited. « Jellycat », le
-> logo, les visuels produits et les textes descriptifs appartiennent à Jellycat
-> Limited et restent leur propriété. Les images sont chargées depuis le CDN
-> d'origine et ne sont pas redistribuées ici. Ce code est publié pour la
-> démonstration technique uniquement : ne le déployez pas en ligne tel quel et ne
-> l'utilisez pas à des fins commerciales.
+> Projet d'apprentissage, sans lien avec aucune marque réelle. La maquette a été
+> construite en s'inspirant de `fr.jellycat.com` ; les visuels produits sont
+> encore chargés depuis le CDN d'origine et les textes descriptifs proviennent de
+> ce site — ils appartiennent à **Jellycat Limited** et ne sont ni redistribués
+> ici, ni utilisables commercialement. Remplacez-les par vos propres visuels et
+> textes avant tout déploiement en ligne.
 
 ## Lancer en local
 
@@ -50,3 +50,4 @@ Puis ouvrir <http://localhost:8123>.
 - Les fiches produit hors des 9 détaillées affichent nom, prix et visuel, sans
   description ni avis
 - Pas de tunnel de commande ni de back-end
+- Les images sont hébergées sur un CDN tiers : à remplacer par vos propres visuels

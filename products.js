@@ -1,4 +1,4 @@
-/* Donnees produits — reprises de fr.jellycat.com */
+/* Donnees produits — reprises de fr.jellypin.com */
 window.PRODUCTS = [
   {
     slug: 'amuseables-peach',
@@ -9,7 +9,7 @@ window.PRODUCTS = [
     crumbs: ['Accueil', 'Collections', 'De Retour en Stock'],
     reviews: 4,
     desc: [
-      'Ne vous fiez pas à ses joues rosées. Amuseables Peach, fine spécialiste de fruits, est la critique gastronomique la plus redoutable que Jellycat ait connu.',
+      'Ne vous fiez pas à ses joues rosées. Amuseables Peach, fine spécialiste de fruits, est la critique gastronomique la plus redoutable que Jellypin ait connu.',
       'Du crumble au chutney, elle a tout goûté et tout jugé, consignant soigneusement ses notes dans son carnet de velours. Opiniâtre, elle s’est un jour lancée dans un débat, courtois mais passionné, avec Amuseables Banana sur la suprématie de la confiture face à la gelée. Sa nièce, Amuseables Cherry, pense qu’elle devrait lancer sa propre émission culinaire et, à vrai dire, l’idée la tente de plus en plus.',
       'Sous la douceur de sa peau de pêche, elle nourrit le rêve de partager, avec qui veut bien l’écouter, ses théories bien arrêtées sur la compote parfaite.'
     ],
@@ -96,7 +96,7 @@ window.PRODUCTS = [
     desc: [
       'Tout a commencé avec une fête d’anniversaire à laquelle il était invité. Outré par l’absence de code vestimentaire, Peanut a alors décidé d’en inventer un : « Petits félins ». Et depuis... tout s’est enchaîné.',
       'On l’a revu porter son costume à Halloween, puis pour célébrer la Journée internationale du chat, et dernièrement pour prendre le train. (« C’est très pratique pour voyager », a-t-il miaulé.)',
-      'Peanut sait si bien se fondre dans le personnage que même ses amis les plus proches s’y sont trompés... Eh oui, Jellycat Jack aussi ! (Amuseables Bean, en revanche, ne s’est jamais laissé berner. Il reconnaîtrait cette houpette entre mille.)'
+      'Peanut sait si bien se fondre dans le personnage que même ses amis les plus proches s’y sont trompés... Eh oui, Jellypin Jack aussi ! (Amuseables Bean, en revanche, ne s’est jamais laissé berner. Il reconnaîtrait cette houpette entre mille.)'
     ],
     imgs: [
       'https://cdn11.bigcommerce.com/s-dt3q8edcif/images/stencil/1000w/products/1867/7899/A6PCT__55754.1755712197.jpg',
