@@ -1,6 +1,25 @@
 ﻿/* Donnees produits — reprises de fr.jellypin.com */
 window.PRODUCTS = [
   {
+    slug: 'jellypin-mystere',
+    name: 'Jellypin Mystère',
+    sku: 'JP-MYST01',
+    price: 2,
+    priceLabel: '2,00€',
+    dim: 'Surprise — taille variable',
+    crumbs: ['Accueil', 'Collections'],
+    reviews: 0,
+    badge: 'Mystère',
+    desc: [
+      'Un Jellypin choisi au hasard dans toute la collection, expédié dans son emballage surprise. Personne ne sait lequel arrive — pas même nous.',
+      'Le moyen le moins cher de commencer sa collection, ou de tenter sa chance sur une pièce rare.'
+    ],
+    imgs: [
+      'https://jellyween.com/__l5e/assets-v1/920f031a-9b08-426c-8b30-a71558013e94/bubbling-cauldron.jpg',
+      'https://jellyween.com/__l5e/assets-v1/c2a86bfe-74a5-4b08-8866-8e6470872a58/citrouille.jpg'
+    ]
+  },
+  {
     slug: 'pack-duo-fruits',
     name: 'Pack Duo Amuseables Fruits',
     sku: 'PACK-DUO01',
@@ -16,7 +35,7 @@ window.PRODUCTS = [
     ],
     imgs: [
       'https://cdn11.bigcommerce.com/s-dt3q8edcif/images/stencil/1000w/products/329/15945/A6PEACH__95074.1763051157.jpg',
-      'https://cdn11.bigcommerce.com/s-dt3q8edcif/images/stencil/1951/16112/A4SWEE__10188.1765311964.jpg'
+      'https://cdn11.bigcommerce.com/s-dt3q8edcif/images/stencil/1000w/products/1951/16112/A4SWEE__10188.1765311964.jpg'
     ]
   },
   {
@@ -34,8 +53,8 @@ window.PRODUCTS = [
       'Chaque Amuseables garde son propre caractère, mais ensemble ils forment la bande la plus attachante du jardin.'
     ],
     imgs: [
-      'https://cdn11.bigcommerce.com/s-dt3q8edcif/images/stencil/1867/7899/A6PCT__55754.1.jpg',
-      'https://cdn11.bigcommerce.com/s-dt3q8edcif/images/stencil/2071/17685/A6PAC__55004.1.png',
+      'https://cdn11.bigcommerce.com/s-dt3q8edcif/images/stencil/1000w/products/1867/7899/A6PCT__55754.1.jpg',
+      'https://cdn11.bigcommerce.com/s-dt3q8edcif/images/stencil/1000w/products/2071/17685/A6PAC__55004.1.png',
       'https://cdn11.bigcommerce.com/s-dt3q8edcif/images/stencil/1000w/products/329/15945/A6PEACH__95074.1763051157.jpg'
     ]
   },
@@ -55,8 +74,8 @@ window.PRODUCTS = [
     ],
     imgs: [
       'https://cdn11.bigcommerce.com/s-dt3q8edcif/images/stencil/1000w/products/1951/16112/A4SWEE__10188.1765311964.jpg',
-      'https://cdn11.bigcommerce.com/s-dt3q8edcif/images/stencil/2069/17691/A4SMR__90722.1.png',
-      'https://cdn11.bigcommerce.com/s-dt3q8edcif/images/stencil/329/15944/A6PEACH_10__12609.1763051156.jpg'
+      'https://cdn11.bigcommerce.com/s-dt3q8edcif/images/stencil/1000w/products/2069/17691/A4SMR__90722.1.png',
+      'https://cdn11.bigcommerce.com/s-dt3q8edcif/images/stencil/1000w/products/329/15944/A6PEACH_10__12609.1763051156.jpg'
     ]
   },
   {

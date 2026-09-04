@@ -254,24 +254,6 @@ window.CATEGORIES = {
     ]
   },
 
-  'halloween': {
-    title: 'HALLOWEEN', crumbs: ['Accueil', 'Collections'], count: '11',
-    intro: 'Fantômes tout doux, chauves-souris câlines et citrouilles souriantes.',
-    rows: [
-      "amuseables-peanut-cat-outfit|Amuseables Peanut ‘Cat’|19,99€|Nouveauté|1867/7899/A6PCT__55754.1.jpg",
-      "broox-bat|Broox Bat|9,99€|Nouveauté|1848/9847/BAT3B__58119.1.jpg",
-      "amuseables-flickerty-candle|Amuseables Flickerty Candle|19,99€|Nouveauté|2087/17943/A4CAND__03438.1.jpg",
-      "growlston-gargoyle|Growlston Gargoyle|9,99€|Nouveauté|2091/17956/GAR3GYL__90784.1.jpg",
-      "ooky-jack-o-lantern|Ooky Jack O Lantern|9,99€|Nouveauté|1841/13375/OOK3JOL__56289.1.jpg",
-      "amuseables-vampop-drink|Amuseables Vampop Drink|9,99€|Nouveauté|2089/17957/A4HALD__36340.1.jpg",
-      "ghost-bob|Ghost Bob|9,99€|Nouveauté|2092/17948/GH3B__60756.1.jpg",
-      "amuseables-garlic|Amuseables Garlic|9,99€|Nouveauté|2088/17946/A4GAR__06291.1.jpg",
-      "amuseables-glazespun-doughnut|Amuseables Glazespun Doughnut|19,99€|Nouveauté|2086/17941/A2DOUH__31278.1.jpg",
-      "rufferty-puppy-wizard-original|Rufferty Puppy 'Wizard'|19,99€|Nouveauté|2090/17969/BAS3BCPW__50540.1.jpg",
-      "mummy-bob|Mummy Bob|9,99€|De Retour en Stock|952/13166/MUM3B__49571.1.jpg"
-    ]
-  },
-
   'de-retour-en-stock': {
     title: 'DE RETOUR EN STOCK', crumbs: ['Accueil', 'Collections'], count: '25',
     intro: 'Ils étaient partis, les voilà de retour.',
@@ -354,9 +336,20 @@ window.CATEGORIES = {
     ]
   },
   'halloween': {
-    title: 'HALLOWEEN', crumbs: ['Accueil', 'Collections'], count: '84',
+    title: 'HALLOWEEN', crumbs: ['Accueil', 'Collections'], count: '95',
     intro: 'Edition Halloween exclusive — 84 peluches collector a prix reduit, stock limite.',
     rows: [
+    "amuseables-peanut-cat-outfit|Amuseables Peanut CAT|19,99€|Halloween|1867/7899/A6PCT__55754.1.jpg",
+    "broox-bat|Broox Bat|9,99€|Halloween|1848/9847/BAT3B__58119.1.jpg",
+    "amuseables-flickerty-candle|Amuseables Flickerty Candle|19,99€|Halloween|2087/17943/A4CAND__03438.1.jpg",
+    "growlston-gargoyle|Growlston Gargoyle|9,99€|Halloween|2091/17956/GAR3GYL__90784.1.jpg",
+    "ooky-jack-o-lantern|Ooky Jack O Lantern|9,99€|Halloween|1841/13375/OOK3JOL__56289.1.jpg",
+    "amuseables-vampop-drink|Amuseables Vampop Drink|9,99€|Halloween|2089/17957/A4HALD__36340.1.jpg",
+    "ghost-bob|Ghost Bob|9,99€|Halloween|2092/17948/GH3B__60756.1.jpg",
+    "amuseables-garlic|Amuseables Garlic|9,99€|Halloween|2088/17946/A4GAR__06291.1.jpg",
+    "amuseables-glazespun-doughnut|Amuseables Glazespun Doughnut|19,99€|Halloween|2086/17941/A2DOUH__31278.1.jpg",
+    "rufferty-puppy-wizard-original|Rufferty Puppy Wizard|19,99€|Halloween|2090/17969/BAS3BCPW__50540.1.jpg",
+    "mummy-bob|Mummy Bob|9,99€|Halloween|952/13166/MUM3B__49571.1.jpg",
     "starry-wizard-dragon|Starry Wizard Dragon|19,99€|Halloween|https://jellyween.com/__l5e/assets-v1/096e87dc-fe1b-4775-a2c4-256051e5dff4/image-3.jpg",
     "frankenstein-bear|Frankenstein Bear|19,99€|Halloween|https://jellyween.com/__l5e/assets-v1/2a85d014-0184-43a1-b585-29d9ef889220/image-4.jpg",
     "vampire-bear-in-cape|Vampire Bear in Cape|19,99€|Halloween|https://jellyween.com/__l5e/assets-v1/c3e64ef4-0d15-40d6-8a60-c8450cc963c3/image-5.jpg",

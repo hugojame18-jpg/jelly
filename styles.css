@@ -660,3 +660,44 @@ h1,h2,h3,p{margin:0}
   font-size:16px;font-weight:600;border:0;border-radius:0
 }
 .drawer__checkout:hover{background:var(--burgundy)}
+
+/* --- Modale guide des tailles ------------------------------------------- */
+.sizeguide-overlay{
+  position:fixed;inset:0;z-index:60;
+  background:rgba(0,0,0,.45);
+  opacity:0;visibility:hidden;transition:opacity .2s ease,visibility .2s ease;
+}
+.sizeguide-overlay.open{opacity:1;visibility:visible}
+.sizeguide{
+  position:fixed;z-index:61;
+  top:50%;left:50%;transform:translate(-50%,-46%) scale(.98);
+  width:min(560px,calc(100vw - 32px));
+  max-height:min(80vh,720px);
+  display:flex;flex-direction:column;
+  background:#fff;
+  opacity:0;visibility:hidden;
+  transition:opacity .2s ease,visibility .2s ease,transform .2s ease;
+}
+.sizeguide.open{opacity:1;visibility:visible;transform:translate(-50%,-50%) scale(1)}
+.sizeguide__head{
+  display:flex;align-items:center;justify-content:space-between;
+  gap:16px;padding:20px 24px;border-bottom:1px solid var(--line);
+}
+.sizeguide__head h2{margin:0;font-size:18px;letter-spacing:.02em}
+.sizeguide__close{
+  border:0;background:none;font-size:28px;line-height:1;
+  padding:0 4px;cursor:pointer;color:var(--ink);
+}
+.sizeguide__body{padding:20px 24px 24px;overflow-y:auto}
+.sizeguide__body>p{margin:0 0 16px;font-size:14px;line-height:1.6}
+.sizeguide__table{width:100%;border-collapse:collapse;font-size:14px}
+.sizeguide__table th,.sizeguide__table td{
+  text-align:left;padding:10px 12px;border-bottom:1px solid var(--line);
+}
+.sizeguide__table th{
+  background:var(--cream-light);font-weight:600;
+  font-size:12px;text-transform:uppercase;letter-spacing:.06em;
+}
+.sizeguide__table td:first-child{font-weight:600}
+.sizeguide__note{margin:16px 0 0;font-size:13px;color:#666;line-height:1.6}
+.pdp__sizelink{cursor:pointer}

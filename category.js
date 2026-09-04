@@ -45,8 +45,13 @@
     var pool = window.PRODUCTS.filter(function(p) {
       return filterCat ? p.badge === filterCat : true;
     });
-    // Halloween en premier, puis le reste
-    pool.sort(function(a,b){ return (b.badge==='Halloween')-(a.badge==='Halloween'); });
+    // Mystere en tete (entree a 2EUR), puis Halloween, puis le reste
+    var rank = function (p) {
+      if (p.badge === 'Mystère') return 0;
+      if (p.badge === 'Halloween') return 1;
+      return 2;
+    };
+    pool.sort(function (a, b) { return rank(a) - rank(b); });
     rows = pool.map(function(p) {
       return { slug: p.slug, name: p.name, price: p.priceLabel || (p.price.toFixed(2).replace('.',',')+'\u20ac'), badge: p.badge, img: p.imgs[0] };
     });

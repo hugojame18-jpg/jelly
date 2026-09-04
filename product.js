@@ -1,4 +1,4 @@
-/* Fiche produit : remplissage depuis products.js selon ?p=<slug>.
+﻿/* Fiche produit : remplissage depuis products.js selon ?p=<slug>.
    Si le produit n'a pas de fiche detaillee, on retombe sur les donnees de la
    grille categorie (nom, prix, visuel) sans inventer de description.
    Le panier accepte plusieurs articles ; le lien de paiement est choisi
@@ -80,7 +80,14 @@
     var im = document.createElement('img');
     im.src = src.replace('/stencil/1000w/', '/stencil/160w/');
     im.alt = '';
-    im.loading = 'lazy';
+    /* Vignettes chargees tout de suite : elles sont minuscules et leur absence
+       donnait l'impression que la 2e photo du produit n'existait pas. */
+    im.loading = 'eager';
+    /* Si la miniature 160w n'existe pas, on retombe sur le visuel plein format. */
+    im.addEventListener('error', function () {
+      if (im.src !== src) im.src = src;
+      else b.hidden = true;
+    });
     b.appendChild(im);
     b.addEventListener('click', function () { show(i); });
     thumbs.appendChild(b);
@@ -151,5 +158,38 @@
     showAdded();
     if (window.jcOpenDrawer) window.jcOpenDrawer();
     else document.dispatchEvent(new CustomEvent('jc:open-cart'));
+  });
+  /* --- Guide des tailles -------------------------------------------------- */
+  var sgOverlay = document.getElementById('sizeguide-overlay');
+  var sgModal   = document.getElementById('sizeguide');
+  var sgClose   = document.getElementById('sizeguide-close');
+  var sgOpen    = document.querySelector('.pdp__sizelink');
+
+  function openSizeGuide() {
+    if (!sgOverlay || !sgModal) return;
+    sgOverlay.classList.add('open');
+    sgModal.classList.add('open');
+    document.body.style.overflow = 'hidden';
+    if (sgClose) sgClose.focus();
+  }
+  function closeSizeGuide() {
+    if (!sgOverlay || !sgModal) return;
+    sgOverlay.classList.remove('open');
+    sgModal.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  if (sgOpen)    sgOpen.addEventListener('click', openSizeGuide);
+  if (sgOverlay) sgOverlay.addEventListener('click', closeSizeGuide);
+  if (sgClose)   sgClose.addEventListener('click', closeSizeGuide);
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') closeSizeGuide();
+  });
+
+  /* Les liens "Guide des Tailles" du pied de page ouvrent la meme modale */
+  document.querySelectorAll('.footer a').forEach(function (a) {
+    if (a.textContent.trim() === 'Guide des Tailles') {
+      a.addEventListener('click', function (e) { e.preventDefault(); openSizeGuide(); });
+    }
   });
 })();
