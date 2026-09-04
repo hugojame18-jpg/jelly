@@ -701,3 +701,14 @@ h1,h2,h3,p{margin:0}
 .sizeguide__table td:first-child{font-weight:600}
 .sizeguide__note{margin:16px 0 0;font-size:13px;color:#666;line-height:1.6}
 .pdp__sizelink{cursor:pointer}
+
+/* Mention de prix d'appel sur une tuile de categorie */
+.trio__from{
+  display:block;
+  margin-top:4px;
+  font-size:13px;
+  font-weight:600;
+  letter-spacing:.04em;
+  text-transform:uppercase;
+  color:var(--burgundy);
+}
