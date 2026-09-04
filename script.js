@@ -66,19 +66,31 @@
   var drawer   = document.getElementById('cart-drawer');
   var closeBtn = document.getElementById('drawer-close');
 
-  /* Lien de paiement associe au total du panier (paliers croissants) */
+  /* Paliers de paiement, tries du plus petit au plus grand prix.
+     Regle : on ne fait JAMAIS payer plus que le total reel du panier.
+     On choisit donc le palier le plus eleve qui reste <= au total
+     (jamais un palier au-dessus, meme si c'est le plus proche). */
   var PRICE_LINKS = [
-    { max: 5,        url: 'https://t.trklinkx.com/click?pid=4784&offer_id=13086&sub3=2lujelly'  },  /* 2€ */
-    { max: 15,       url: 'https://t.trklinkx.com/click?pid=4784&offer_id=13179&sub3=lujelly'    },  /* 10€ */
-    { max: 35,       url: 'https://t.trklinkx.com/click?pid=4784&offer_id=13057&sub3=3LUJELLY'   },  /* 20€ */
-    { max: 65,       url: 'https://t.trklinkx.com/click?pid=4784&offer_id=12355&sub3=Lujelly'    },  /* 49,99€ */
-    { max: 90,       url: 'https://t.trklinkx.com/click?pid=4784&offer_id=12541&sub3=Lujelly'    },  /* 79,99€ */
-    { max: Infinity, url: 'https://t.trklinkx.com/click?pid=4784&offer_id=12913&sub3=10Lujelly'  }   /* 99,99€ */
+    { price: 2,     url: 'https://t.trklinkx.com/click?pid=4784&offer_id=13086&sub3=2lujelly'  },
+    { price: 9.99,  url: 'https://t.trklinkx.com/click?pid=4784&offer_id=13179&sub3=lujelly'    },
+    { price: 19.99, url: 'https://t.trklinkx.com/click?pid=4784&offer_id=13057&sub3=3LUJELLY'   },
+    { price: 49.99, url: 'https://t.trklinkx.com/click?pid=4784&offer_id=12355&sub3=Lujelly'    },
+    { price: 79.99, url: 'https://t.trklinkx.com/click?pid=4784&offer_id=12541&sub3=Lujelly'    },
+    { price: 99.99, url: 'https://t.trklinkx.com/click?pid=4784&offer_id=12913&sub3=10Lujelly'  }
   ];
-  function linkForTotal(total) {
-    for (var i = 0; i < PRICE_LINKS.length; i++) { if (total <= PRICE_LINKS[i].max) return PRICE_LINKS[i].url; }
-    return PRICE_LINKS[PRICE_LINKS.length - 1].url;
+  /* Retourne le palier { price, url } le plus eleve <= total (jamais au-dessus).
+     Tolerance de 10 centimes pour absorber les ecarts d'arrondi normaux
+     (ex: 4 x 19,99 = 79,96, tres proche du palier 79,99) sans jamais
+     autoriser un ecart important comme 39,98 -> 49,99. */
+  var EPSILON = 0.10;
+  function tierForTotal(total) {
+    var chosen = PRICE_LINKS[0];
+    for (var i = 0; i < PRICE_LINKS.length; i++) {
+      if (PRICE_LINKS[i].price <= total + EPSILON) chosen = PRICE_LINKS[i];
+    }
+    return chosen;
   }
+  function linkForTotal(total) { return tierForTotal(total).url; }
   window.jcLinkForTotal = linkForTotal;
 
   function euro(n) { return n.toFixed(2).replace('.', ',') + '€'; }
@@ -182,18 +194,33 @@
     }
 
     var total = cartTotal(cart);
+    var promoEl = document.getElementById('drawer-promo');
     if (cart.length) {
+      var tier = tierForTotal(total);
       if (totalBox) {
         totalBox.hidden = false;
         document.getElementById('drawer-total-amount').textContent = euro(total);
       }
       if (checkout) {
         checkout.hidden = false;
-        checkout.href = linkForTotal(total);
+        checkout.href = tier.url;
+      }
+      if (promoEl) {
+        var diff = tier.price - total;
+        if (diff < -0.005) {
+          promoEl.hidden = false;
+          promoEl.textContent = '🎉 Petite promo : vous payez ' + euro(tier.price) + ' au lieu de ' + euro(total) + '.';
+        } else if (diff > 0.005) {
+          promoEl.hidden = false;
+          promoEl.textContent = 'ℹ️ Total arrondi à ' + euro(tier.price) + ' pour le paiement.';
+        } else {
+          promoEl.hidden = true;
+        }
       }
     } else {
       if (totalBox) totalBox.hidden = true;
       if (checkout) checkout.hidden = true;
+      if (promoEl) promoEl.hidden = true;
     }
     paintCount();
   }

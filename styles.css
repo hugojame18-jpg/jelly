@@ -648,6 +648,10 @@ h1,h2,h3,p{margin:0}
   display:flex;justify-content:space-between;align-items:center;
   font-size:16px;font-weight:700;padding-top:12px;border-top:1px solid var(--line)
 }
+.drawer__promo{
+  background:var(--cream);color:var(--burgundy);
+  font-size:13px;font-weight:600;padding:8px 12px;margin:0
+}
 .drawer__checkout{
   display:block;width:100%;text-align:center;
   background:var(--ink);color:#fff;padding:16px;
