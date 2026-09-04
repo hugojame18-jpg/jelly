@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Catégorie – Jellycat</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<div class="promo-bar">
+  Livraison offerte dès 60&nbsp;&euro; d'achat &mdash; <a href="#">En savoir plus</a>
+</div>
+
+<header class="header">
+  <div class="header__top">
+    <form class="search" role="search" onsubmit="return false">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 2a8 8 0 105.3 14l5.4 5.4 1.4-1.4-5.4-5.4A8 8 0 0010 2zm0 2a6 6 0 110 12 6 6 0 010-12z"/></svg>
+      <input type="search" placeholder="Que recherchez-vous&nbsp;?" aria-label="Recherche">
+    </form>
+
+    <a class="logo" href="index.html" aria-label="Jellycat, accueil">
+      <img src="https://cdn11.bigcommerce.com/s-dt3q8edcif/images/stencil/250x100/jellycat-logo-250x100_2_1739793828__11384.original.png" alt="Jellycat" width="250" height="100">
+    </a>
+
+    <div class="header__actions">
+      <a href="#" aria-label="Trouver un point de vente" title="Trouver un point de vente">
+        <svg viewBox="0 0 24 24"><path d="M12 21s7-6.3 7-11a7 7 0 10-14 0c0 4.7 7 11 7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>
+      </a>
+      <a href="#" aria-label="Mon compte" title="Mon compte">
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-7 8-7s8 2.6 8 7"/></svg>
+      </a>
+      <a href="#" aria-label="Liste de souhaits" title="Liste de souhaits">
+        <svg viewBox="0 0 24 24"><path d="M12 20s-7-4.6-7-9.3A4 4 0 0112 8a4 4 0 017 2.7C19 15.4 12 20 12 20z"/></svg>
+      </a>
+      <a href="#" aria-label="Panier" title="Panier">
+        <svg viewBox="0 0 24 24"><path d="M6 7h12l-1 13H7L6 7z"/><path d="M9 7a3 3 0 016 0"/></svg>
+        <span class="cart-count" data-cart-count>0</span>
+      </a>
+    </div>
+  </div>
+
+  <nav class="nav" aria-label="Navigation principale">
+    <ul>
+      <li><a href="category.html?c=nouveautes">Nouveautés</a></li>
+      <li><a href="category.html?c=tous-les-jellycats">Tous les Jellycats</a></li>
+      <li><a href="category.html?c=collections">Collections</a></li>
+      <li><a href="category.html?c=animaux">Animaux</a></li>
+      <li><a href="category.html?c=amuseables">Amuseables</a></li>
+      <li><a href="category.html?c=accessoires">Accessoires</a></li>
+      <li><a href="category.html?c=bebe">Bébé</a></li>
+      <li><a href="category.html?c=livres">Livres</a></li>
+      <li><a href="category.html?c=personnalisation">Personnalisation</a></li>
+      <li><a href="category.html?c=idees-cadeaux">Idées Cadeaux</a></li>
+      <li><a href="index.html">Jelly Journal</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main class="container">
+  <nav class="crumbs" aria-label="Fil d'Ariane" data-crumbs></nav>
+
+  <header class="cat__head">
+    <h1 data-title></h1>
+    <p class="cat__intro" data-intro></p>
+  </header>
+
+  <nav class="cat__subs" data-subs hidden></nav>
+
+  <div class="cat__bar" data-bar hidden>
+    <button class="cat__filter" type="button">Filtrer</button>
+    <p data-count></p>
+    <label class="cat__sort">Trier par
+      <select data-sort>
+        <option value="pertinence">Pertinence</option>
+        <option value="popularite">Popularité</option>
+        <option value="nouveaute">Nouveautés</option>
+        <option value="az">A - Z</option>
+        <option value="za">Z - A</option>
+        <option value="asc">Prix (croissant)</option>
+        <option value="desc">Prix (décroissant)</option>
+      </select>
+    </label>
+  </div>
+
+  <div class="cat__grid" data-grid></div>
+  <p class="cat__empty" data-empty hidden>Cette catégorie n'a pas de grille produits sur le site d'origine&nbsp;: choisissez une sous-catégorie ci-dessus.</p>
+</main>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer__cols">
+      <div>
+        <h3>Shopping</h3>
+        <ul>
+          <li><a href="#">Nous Contacter</a></li>
+          <li><a href="#">FAQ</a></li>
+          <li><a href="#">Livraison</a></li>
+          <li><a href="#">Retours</a></li>
+          <li><a href="#">Options Cadeaux</a></li>
+          <li><a href="#">Guide des Tailles</a></li>
+          <li><a href="#">Conseils d'Entretien</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3>À propos</h3>
+        <ul>
+          <li><a href="#">Notre Histoire</a></li>
+          <li><a href="#">Jelly Journal</a></li>
+          <li><a href="#">Presse</a></li>
+          <li><a href="#">Événements &amp; Expériences</a></li>
+          <li><a href="#">Trouver un Point de Vente</a></li>
+          <li><a href="#">S'inscrire à la Newsletter</a></li>
+          <li><a href="#">Jellycat Purrks</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3>Mentions légales</h3>
+        <ul>
+          <li><a href="#">CGV</a></li>
+          <li><a href="#">CGU</a></li>
+          <li><a href="#">CGU Jellycat Purrks</a></li>
+          <li><a href="#">Confidentialité &amp; Cookies</a></li>
+          <li><a href="#">Protection de la Marque</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3>Nos engagements</h3>
+        <ul>
+          <li><a href="#">Nos Engagements</a></li>
+          <li><a href="#">Caractéristiques Environnementales</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer__region">
+      <strong>Jellycat autour du monde</strong>
+      <a href="#">Royaume-Uni</a>
+      <a href="#">USA, Canada &amp; Mexique</a>
+      <a href="#">Allemagne</a>
+      <a href="#">France</a>
+      <a href="#">Corée</a>
+      <a href="#">Europe &amp; International</a>
+    </div>
+
+    <div class="footer__bottom">
+      <p>&copy; Jellycat Limited 2026 &mdash; Tous droits réservés</p>
+      <div class="footer__social">
+        <a href="#" aria-label="TikTok"><svg viewBox="0 0 24 24"><path d="M16 3a5 5 0 005 5v3a8 8 0 01-5-1.8V15a6 6 0 11-6-6c.3 0 .7 0 1 .1v3.1a3 3 0 101 2.3V3h4z"/></svg></a>
+        <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M12 2c2.7 0 3 0 4.1.1 1.1 0 1.8.2 2.4.5.7.3 1.2.6 1.7 1.2.6.5.9 1 1.2 1.7.3.6.5 1.3.5 2.4C22 9 22 9.3 22 12s0 3-.1 4.1c0 1.1-.2 1.8-.5 2.4-.3.7-.6 1.2-1.2 1.7-.5.6-1 .9-1.7 1.2-.6.3-1.3.5-2.4.5C15 22 14.7 22 12 22s-3 0-4.1-.1c-1.1 0-1.8-.2-2.4-.5-.7-.3-1.2-.6-1.7-1.2-.6-.5-.9-1-1.2-1.7-.3-.6-.5-1.3-.5-2.4C2 15 2 14.7 2 12s0-3 .1-4.1c0-1.1.2-1.8.5-2.4.3-.7.6-1.2 1.2-1.7.5-.6 1-.9 1.7-1.2.6-.3 1.3-.5 2.4-.5C9 2 9.3 2 12 2zm0 5a5 5 0 100 10 5 5 0 000-10zm0 2a3 3 0 110 6 3 3 0 010-6zm5.5-3.3a1.2 1.2 0 100 2.4 1.2 1.2 0 000-2.4z"/></svg></a>
+        <a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M13.5 22v-8h2.7l.4-3.1h-3.1V8.9c0-.9.3-1.5 1.6-1.5h1.6V4.6c-.3 0-1.3-.1-2.4-.1-2.4 0-4 1.4-4 4.1v2.3H7.5V14h2.8v8h3.2z"/></svg></a>
+        <a href="#" aria-label="Twitter"><svg viewBox="0 0 24 24"><path d="M18.9 3H22l-6.8 7.8L23 21h-6.2l-4.9-6.3L6.3 21H3.2l7.2-8.3L2.5 3h6.4l4.4 5.8L18.9 3zm-1.1 16.2h1.7L8.3 4.7H6.5l11.3 14.5z"/></svg></a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="categories.js"></script>
+<script src="script.js"></script>
+<script src="category.js"></script>
+</body>
+</html>
