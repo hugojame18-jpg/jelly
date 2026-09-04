@@ -163,8 +163,16 @@
 
   btn.addEventListener('click', function () {
     if (readCart().length >= MAX_ARTICLES) return;
-    writeCart([{ slug: p.slug, name: p.name, price: p.priceLabel || euro(p.price) }]);
+    writeCart([{
+      slug: p.slug,
+      name: p.name,
+      price: p.priceLabel || euro(p.price),
+      priceValue: p.price,
+      img: p.imgs[0]
+    }]);
     refreshButton();
+    if (window.jcOpenDrawer) window.jcOpenDrawer();
+    else document.dispatchEvent(new CustomEvent('jc:open-cart'));
   });
 
   refreshButton();

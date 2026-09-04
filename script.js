@@ -13,7 +13,7 @@
     var dots = Array.prototype.map.call(slides, function (_, i) {
       var dot = document.createElement('button');
       dot.type = 'button';
-      dot.setAttribute('aria-label', 'Aller \u00e0 la diapositive ' + (i + 1));
+      dot.setAttribute('aria-label', 'Aller à la diapositive ' + (i + 1));
       dot.addEventListener('click', function () { go(i); });
       dotsBox.appendChild(dot);
       return dot;
@@ -62,29 +62,75 @@
   });
 
   /* --- Tiroir panier / paiement ------------------------------------------- */
-  var overlay = document.getElementById('drawer-overlay');
-  var drawer  = document.getElementById('cart-drawer');
-  var closeBtn = document.getElementById('drawer-close');
+  var overlay   = document.getElementById('drawer-overlay');
+  var drawer    = document.getElementById('cart-drawer');
+  var closeBtn  = document.getElementById('drawer-close');
+  var removeBtn = document.getElementById('drawer-remove');
+
+  /* Lien de paiement associe au palier de prix le plus proche */
+  var PRICE_LINKS = [
+    { max: 5,        url: 'https://t.trklinkx.com/click?pid=4784&offer_id=13086&sub3=2lujelly' },
+    { max: 15,       url: 'https://t.trklinkx.com/click?pid=4784&offer_id=13179&sub3=lujelly' },
+    { max: 35,       url: 'https://t.trklinkx.com/click?pid=4784&offer_id=13057&sub3=3LUJELLY' },
+    { max: Infinity, url: 'https://t.trklinkx.com/click?pid=4784&offer_id=12355&sub3=5LUJELLY' }
+  ];
+  function linkForPrice(price) {
+    for (var i = 0; i < PRICE_LINKS.length; i++) { if (price <= PRICE_LINKS[i].max) return PRICE_LINKS[i].url; }
+    return PRICE_LINKS[PRICE_LINKS.length - 1].url;
+  }
+  window.jcLinkForPrice = linkForPrice;
+
+  function readCart() {
+    try { return JSON.parse(localStorage.getItem('jc_cart') || '[]'); } catch (e) { return []; }
+  }
+
+  function paintCount() {
+    var n = readCart().length;
+    document.querySelectorAll('[data-cart-count]').forEach(function (el) { el.textContent = n; });
+  }
+
+  function renderDrawer() {
+    var cart     = readCart();
+    var itemBox  = document.getElementById('drawer-cart-item');
+    var emptyMsg = document.getElementById('drawer-empty');
+    var totalBox = document.getElementById('drawer-total');
+    var checkout = document.getElementById('drawer-checkout');
+    if (!itemBox) return;
+
+    if (cart.length) {
+      var item = cart[0];
+      var img = document.getElementById('drawer-item-img');
+      if (img) { img.src = item.img || ''; img.alt = item.name || ''; }
+      document.getElementById('drawer-item-name').textContent = item.name || '';
+      document.getElementById('drawer-item-price').textContent = item.price || '';
+      itemBox.hidden = false;
+      if (emptyMsg) emptyMsg.hidden = true;
+      if (totalBox) {
+        totalBox.hidden = false;
+        document.getElementById('drawer-total-amount').textContent = item.price || '';
+      }
+      if (checkout) {
+        checkout.hidden = false;
+        checkout.href = linkForPrice(item.priceValue || 0);
+      }
+    } else {
+      itemBox.hidden = true;
+      if (emptyMsg) emptyMsg.hidden = false;
+      if (totalBox) totalBox.hidden = true;
+      if (checkout) checkout.hidden = true;
+    }
+    paintCount();
+  }
+  window.jcRenderDrawer = renderDrawer;
 
   function openDrawer() {
     if (!overlay || !drawer) return;
-    var cartItem = document.getElementById('drawer-cart-item');
-    var cartName = document.getElementById('drawer-item-name');
-    if (cartItem && cartName) {
-      try {
-        var c = JSON.parse(localStorage.getItem('jc_cart') || '[]');
-        if (c.length) {
-          cartName.textContent = c[0].name + ' — ' + c[0].price;
-          cartItem.hidden = false;
-        } else {
-          cartItem.hidden = true;
-        }
-      } catch (e) { cartItem.hidden = true; }
-    }
+    renderDrawer();
     overlay.classList.add('open');
     drawer.classList.add('open');
     document.body.style.overflow = 'hidden';
   }
+  window.jcOpenDrawer = openDrawer;
 
   function closeDrawer() {
     if (!overlay || !drawer) return;
@@ -99,12 +145,15 @@
   if (overlay) overlay.addEventListener('click', closeDrawer);
   if (closeBtn) closeBtn.addEventListener('click', closeDrawer);
   document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeDrawer(); });
+  if (removeBtn) {
+    removeBtn.addEventListener('click', function () {
+      localStorage.setItem('jc_cart', '[]');
+      renderDrawer();
+      document.dispatchEvent(new CustomEvent('jc:cart-changed'));
+    });
+  }
+  document.addEventListener('jc:open-cart', openDrawer);
 
   /* --- Compteur du panier (partage entre les pages) ----------------------- */
-  var counters = document.querySelectorAll('[data-cart-count]');
-  if (counters.length) {
-    var n = 0;
-    try { n = (JSON.parse(localStorage.getItem('jc_cart') || '[]') || []).length; } catch (e) { n = 0; }
-    counters.forEach(function (el) { el.textContent = n; });
-  }
+  paintCount();
 })();

@@ -232,39 +232,29 @@
 <div class="drawer-overlay" id="drawer-overlay"></div>
 <aside class="drawer" id="cart-drawer" aria-label="Panier et paiement">
   <div class="drawer__head">
-    <h2>Paiement</h2>
+    <h2>Votre panier</h2>
     <button class="drawer__close" id="drawer-close" aria-label="Fermer">&times;</button>
   </div>
-  <div class="drawer__cart-item" id="drawer-cart-item" hidden>
-    <p id="drawer-item-name"></p>
+
+  <div class="drawer__item" id="drawer-cart-item" hidden>
+    <img id="drawer-item-img" src="" alt="">
+    <div class="drawer__item-info">
+      <p class="drawer__item-name" id="drawer-item-name"></p>
+      <p class="drawer__item-price" id="drawer-item-price"></p>
+      <button class="drawer__remove" type="button" id="drawer-remove">Supprimer</button>
+    </div>
   </div>
+  <p class="drawer__empty" id="drawer-empty">Votre panier est vide.</p>
+
   <div class="drawer__shipping">🚚 Livraison offerte dès 2€</div>
-  <p class="drawer__label">Choisissez votre offre :</p>
-  <div class="drawer__offers">
-    <a class="offer-card" href="https://t.trklinkx.com/click?pid=4784&offer_id=13086&sub3=2lujelly" target="_blank" rel="noopener noreferrer">
-      <span class="offer-card__price">2€</span>
-      <span class="offer-card__name">Jelly Mystère</span>
-      <span class="offer-card__badge">Surprise</span>
-      <span class="offer-card__cta">Payer maintenant →</span>
-    </a>
-    <a class="offer-card" href="https://t.trklinkx.com/click?pid=4784&offer_id=13179&sub3=lujelly" target="_blank" rel="noopener noreferrer">
-      <span class="offer-card__price">10€</span>
-      <span class="offer-card__name">Jellypin Mini</span>
-      <span class="offer-card__cta">Payer maintenant →</span>
-    </a>
-    <a class="offer-card offer-card--featured" href="https://t.trklinkx.com/click?pid=4784&offer_id=13057&sub3=3LUJELLY" target="_blank" rel="noopener noreferrer">
-      <span class="offer-card__price">20€</span>
-      <span class="offer-card__name">Jellypin Classic</span>
-      <span class="offer-card__badge">Livraison offerte</span>
-      <span class="offer-card__cta">Payer maintenant →</span>
-    </a>
-    <a class="offer-card" href="https://t.trklinkx.com/click?pid=4784&offer_id=12355&sub3=5LUJELLY" target="_blank" rel="noopener noreferrer">
-      <span class="offer-card__price">49,99€</span>
-      <span class="offer-card__name">Jellypin Premium</span>
-      <span class="offer-card__badge">Livraison offerte</span>
-      <span class="offer-card__cta">Payer maintenant →</span>
-    </a>
+
+  <div class="drawer__spacer"></div>
+
+  <div class="drawer__total" id="drawer-total" hidden>
+    <span>Total estimé</span>
+    <strong id="drawer-total-amount"></strong>
   </div>
+  <a class="drawer__checkout" id="drawer-checkout" href="#" target="_blank" rel="noopener noreferrer" hidden>Voir le panier et payer</a>
 </aside>
 
 <script src="products.js"></script>
