@@ -20,6 +20,63 @@ window.PRODUCTS = [
     ]
   },
   {
+    slug: 'duo-mystere',
+    name: 'Duo Mystère',
+    sku: 'JP-MYST02',
+    price: 19.99,
+    priceLabel: '19,99€',
+    dim: 'Surprise — 2 peluches',
+    crumbs: ['Accueil', 'Collections', 'Jellypin Mystère'],
+    reviews: 0,
+    badge: 'Mystère',
+    desc: [
+      'Deux Jellypins tirés au sort dans toute la collection, jamais deux fois le même dans un duo. On garantit la surprise, pas le thème.',
+      'La bonne façon de doubler sa collection sans choisir — et sans y passer une heure.'
+    ],
+    imgs: [
+      'https://jellyween.com/__l5e/assets-v1/2ba6e233-d300-4186-add7-bdc47a2d2ac9/boo-ghost.jpg',
+      'https://jellyween.com/__l5e/assets-v1/920f031a-9b08-426c-8b30-a71558013e94/bubbling-cauldron.jpg'
+    ]
+  },
+  {
+    slug: 'pack-mystere-halloween',
+    name: 'Pack Mystère Halloween',
+    sku: 'JP-MYST03',
+    price: 49.99,
+    priceLabel: '49,99€',
+    dim: 'Surprise — 3 peluches Halloween',
+    crumbs: ['Accueil', 'Collections', 'Jellypin Mystère'],
+    reviews: 0,
+    badge: 'Mystère',
+    desc: [
+      'Trois peluches tirées exclusivement dans la collection Halloween : vampires, fantômes, citrouilles ou momies, la pioche est différente à chaque commande.',
+      'Édition saisonnière, stock limité — une fois la collection écoulée, ce pack disparaît.'
+    ],
+    imgs: [
+      'https://jellyween.com/__l5e/assets-v1/c2a86bfe-74a5-4b08-8866-8e6470872a58/citrouille.jpg',
+      'https://jellyween.com/__l5e/assets-v1/7214d154-b1a4-4249-8dad-ca59515b3a9d/ours-fantome.jpg'
+    ]
+  },
+  {
+    slug: 'coffret-mystere-collection',
+    name: 'Coffret Mystère Collection',
+    sku: 'JP-MYST04',
+    price: 99.99,
+    priceLabel: '99,99€',
+    dim: 'Surprise — 5 peluches dont 1 rare',
+    crumbs: ['Accueil', 'Collections', 'Jellypin Mystère'],
+    reviews: 0,
+    badge: 'Mystère',
+    desc: [
+      'Cinq Jellypins surprise, dont au moins une pièce rare ou déjà retirée du catalogue. Le seul coffret où la pièce rare est garantie.',
+      'Livré dans son emballage collector, prêt à offrir tel quel.'
+    ],
+    imgs: [
+      'https://jellyween.com/__l5e/assets-v1/8ffa8487-a153-4ea9-8841-3f2fd96431fa/halloween-layer-cake.jpg',
+      'https://jellyween.com/__l5e/assets-v1/2ba6e233-d300-4186-add7-bdc47a2d2ac9/boo-ghost.jpg'
+    ]
+  },
+  {
     slug: 'pack-duo-fruits',
     name: 'Pack Duo Amuseables Fruits',
     sku: 'PACK-DUO01',

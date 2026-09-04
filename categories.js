@@ -3,6 +3,14 @@
 window.IMG_PREFIX = 'https://cdn11.bigcommerce.com/s-dt3q8edcif/images/stencil/500x500/products/';
 
 window.CATEGORIES = {
+  'mystere': {
+    title: 'JELLYPIN MYSTÈRE', crumbs: ['Accueil', 'Collections'], count: '4',
+    intro: 'Vous ne choisissez pas votre Jellypin : on le tire au sort pour vous. Du ticket à 2€ au coffret collector, la surprise est garantie.',
+    dynamic: true,
+    filterBadge: 'Mystère',
+    rows: []
+  },
+
   'packs-jellypin': {
     title: 'PACKS JELLYPIN', crumbs: ['Accueil', 'Collections'], count: '3',
     intro: 'Plusieurs Jellypins réunis dans un seul pack, à prix fixe et malin.',
