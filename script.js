@@ -44,6 +44,55 @@
       var results = query(input.value);
       if (results.length) window.location.href = 'product.html?p=' + results[0].slug;
     });
+
+    // Loupe mobile
+    var toggleBtn = document.getElementById('search-toggle');
+    if (toggleBtn) {
+      var overlay = document.createElement('div');
+      overlay.className = 'search-overlay';
+      var overlayInput = document.createElement('input');
+      overlayInput.type = 'search';
+      overlayInput.placeholder = 'Que recherchez-vous ?';
+      var closeBtn2 = document.createElement('button');
+      closeBtn2.className = 'search-overlay__close';
+      closeBtn2.innerHTML = '&times;';
+      closeBtn2.type = 'button';
+      var overlayDropdown = document.createElement('ul');
+      overlayDropdown.className = 'search-dropdown';
+      overlayDropdown.hidden = true;
+      overlay.appendChild(overlayInput);
+      overlay.appendChild(closeBtn2);
+      overlay.appendChild(overlayDropdown);
+      document.body.appendChild(overlay);
+
+      function renderOverlay(results) {
+        overlayDropdown.innerHTML = '';
+        if (!results.length) { overlayDropdown.hidden = true; return; }
+        results.forEach(function (p) {
+          var li = document.createElement('li');
+          li.className = 'search-dropdown__item';
+          var img = p.imgs && p.imgs[0] ? '<img src="' + p.imgs[0] + '" alt="">' : '';
+          li.innerHTML = img + '<span>' + p.name + '</span><small>' + (p.priceLabel || '') + '</small>';
+          li.addEventListener('mousedown', function (e) {
+            e.preventDefault();
+            window.location.href = 'product.html?p=' + p.slug;
+          });
+          overlayDropdown.appendChild(li);
+        });
+        overlayDropdown.hidden = false;
+      }
+
+      toggleBtn.addEventListener('click', function () {
+        overlay.classList.add('open');
+        overlayInput.focus();
+      });
+      closeBtn2.addEventListener('click', function () {
+        overlay.classList.remove('open');
+        overlayInput.value = '';
+        overlayDropdown.hidden = true;
+      });
+      overlayInput.addEventListener('input', function () { renderOverlay(query(overlayInput.value)); });
+    }
   }
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', initSearch);
