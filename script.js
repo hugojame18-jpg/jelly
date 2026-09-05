@@ -1,3 +1,57 @@
+/* Recherche live */
+(function () {
+  function initSearch() {
+    var form = document.querySelector('.search');
+    if (!form) return;
+    var input = form.querySelector('input[type="search"]');
+    if (!input) return;
+
+    var dropdown = document.createElement('ul');
+    dropdown.className = 'search-dropdown';
+    dropdown.hidden = true;
+    form.appendChild(dropdown);
+
+    function query(q) {
+      q = q.trim().toLowerCase();
+      if (!q || !window.PRODUCTS) return [];
+      return window.PRODUCTS.filter(function (p) {
+        return p.name.toLowerCase().indexOf(q) !== -1;
+      }).slice(0, 8);
+    }
+
+    function render(results) {
+      dropdown.innerHTML = '';
+      if (!results.length) { dropdown.hidden = true; return; }
+      results.forEach(function (p) {
+        var li = document.createElement('li');
+        li.className = 'search-dropdown__item';
+        var img = p.imgs && p.imgs[0] ? '<img src="' + p.imgs[0] + '" alt="">' : '';
+        li.innerHTML = img + '<span>' + p.name + '</span><small>' + (p.priceLabel || '') + '</small>';
+        li.addEventListener('mousedown', function (e) {
+          e.preventDefault();
+          window.location.href = 'product.html?p=' + p.slug;
+        });
+        dropdown.appendChild(li);
+      });
+      dropdown.hidden = false;
+    }
+
+    input.addEventListener('input', function () { render(query(input.value)); });
+    input.addEventListener('focus', function () { render(query(input.value)); });
+    input.addEventListener('blur', function () { setTimeout(function () { dropdown.hidden = true; }, 150); });
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var results = query(input.value);
+      if (results.length) window.location.href = 'product.html?p=' + results[0].slug;
+    });
+  }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initSearch);
+  } else {
+    initSearch();
+  }
+})();
+
 /* Compte à rebours déstockage 48h */
 (function(){
   var KEY = 'jc_destockage_end';
