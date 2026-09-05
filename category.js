@@ -45,11 +45,11 @@
     var pool = window.PRODUCTS.filter(function(p) {
       return filterCat ? p.badge === filterCat : true;
     });
-    // Mystere en tete (entree a 2EUR), puis Halloween, puis le reste
+    // Mystere en tete, puis Jellycats normaux, puis Halloween en dernier
     var rank = function (p) {
       if (p.badge === 'Mystère') return 0;
-      if (p.badge === 'Halloween') return 1;
-      return 2;
+      if (p.badge === 'Halloween') return 2;
+      return 1;
     };
     pool.sort(function (a, b) { return rank(a) - rank(b); });
     rows = pool.map(function(p) {
