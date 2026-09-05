@@ -15,8 +15,7 @@ window.PRODUCTS = [
       'Le moyen le moins cher de commencer sa collection, ou de tenter sa chance sur une pièce rare.'
     ],
     imgs: [
-      'https://jellyween.com/__l5e/assets-v1/920f031a-9b08-426c-8b30-a71558013e94/bubbling-cauldron.jpg',
-      'https://jellyween.com/__l5e/assets-v1/c2a86bfe-74a5-4b08-8866-8e6470872a58/citrouille.jpg'
+      "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 380'%3E%3Crect width='300' height='380' fill='%23f5f5f5'/%3E%3Cellipse cx='110' cy='72' rx='26' ry='68' fill='%23111' transform='rotate(-12 110 72)'/%3E%3Cellipse cx='190' cy='72' rx='26' ry='68' fill='%23111' transform='rotate(12 190 72)'/%3E%3Ccircle cx='150' cy='175' r='78' fill='%23111'/%3E%3Cellipse cx='150' cy='290' rx='95' ry='75' fill='%23111'/%3E%3Ctext x='150' y='200' text-anchor='middle' font-size='100' font-weight='900' fill='white' font-family='Arial,sans-serif'%3E%3F%3C/text%3E%3C/svg%3E"
     ]
   },
   {
