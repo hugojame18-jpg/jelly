@@ -1,3 +1,27 @@
+/* Compte à rebours déstockage 48h */
+(function(){
+  var KEY = 'jc_destockage_end';
+  var DURATION = 48 * 3600 * 1000;
+  var end = localStorage.getItem(KEY);
+  if (!end) {
+    end = Date.now() + DURATION;
+    try { localStorage.setItem(KEY, end); } catch(e){}
+  } else {
+    end = parseInt(end, 10);
+  }
+  function tick() {
+    var el = document.getElementById('urgency-timer');
+    if (!el) return;
+    var rem = Math.max(0, end - Date.now());
+    var h = Math.floor(rem / 3600000);
+    var m = Math.floor((rem % 3600000) / 60000);
+    var s = Math.floor((rem % 60000) / 1000);
+    el.textContent = (h < 10 ? '0' : '') + h + ':' + (m < 10 ? '0' : '') + m + ':' + (s < 10 ? '0' : '') + s;
+    if (rem > 0) setTimeout(tick, 1000);
+  }
+  tick();
+})();
+
 /* Carrousel heros + rails de produits */
 (function () {
   'use strict';
