@@ -14,9 +14,7 @@ window.PRODUCTS = [
       'Un Jellypin choisi au hasard dans toute la collection, expédié dans son emballage surprise. Personne ne sait lequel arrive — pas même nous.',
       'Le moyen le moins cher de commencer sa collection, ou de tenter sa chance sur une pièce rare.'
     ],
-    imgs: [
-      "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 380'%3E%3Crect width='300' height='380' fill='%23f5f5f5'/%3E%3Cellipse cx='110' cy='72' rx='26' ry='68' fill='%23111' transform='rotate(-12 110 72)'/%3E%3Cellipse cx='190' cy='72' rx='26' ry='68' fill='%23111' transform='rotate(12 190 72)'/%3E%3Ccircle cx='150' cy='175' r='78' fill='%23111'/%3E%3Cellipse cx='150' cy='290' rx='95' ry='75' fill='%23111'/%3E%3Ctext x='150' y='200' text-anchor='middle' font-size='100' font-weight='900' fill='white' font-family='Arial,sans-serif'%3E%3F%3C/text%3E%3C/svg%3E"
-    ]
+    imgs: []
   },
   {
     slug: 'duo-mystere',

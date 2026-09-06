@@ -73,6 +73,8 @@
     });
   }
 
+  if (p.imgs.length) show(0); else mainImg.hidden = true;
+
   p.imgs.forEach(function (src, i) {
     var b = document.createElement('button');
     b.type = 'button';
@@ -92,7 +94,6 @@
     b.addEventListener('click', function () { show(i); });
     thumbs.appendChild(b);
   });
-  show(0);
 
   /* --- Description -------------------------------------------------------- */
   var desc = document.querySelector('[data-desc]');

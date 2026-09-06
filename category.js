@@ -84,7 +84,7 @@
       a.innerHTML =
         '<div class="card__img">' +
           (p.badge ? '<span class="card__badge">' + p.badge + '</span>' : '') +
-          '<img src="' + p.img + '" alt="' + p.name.replace(/"/g, '&quot;') + '" loading="lazy">' +
+          (p.img ? '<img src="' + p.img + '" alt="' + p.name.replace(/"/g, '&quot;') + '" loading="lazy">' : '') +
           '<span class="card__wish" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 20s-7-4.6-7-9.3A4 4 0 0112 8a4 4 0 017 2.7C19 15.4 12 20 12 20z"/></svg></span>' +
         '</div>' +
         '<p class="card__name">' + p.name + '</p>' +
