@@ -132,6 +132,7 @@
   /* --- Carrousel heros ---------------------------------------------------- */
   document.querySelectorAll('[data-hero]').forEach(function (hero) {
     var track = hero.querySelector('[data-hero-track]');
+    if (!track) return;
     var slides = track.children;
     var dotsBox = hero.querySelector('[data-hero-dots]');
     var index = 0;
@@ -142,7 +143,7 @@
       dot.type = 'button';
       dot.setAttribute('aria-label', 'Aller à la diapositive ' + (i + 1));
       dot.addEventListener('click', function () { go(i); });
-      dotsBox.appendChild(dot);
+      if (dotsBox) dotsBox.appendChild(dot);
       return dot;
     });
 
@@ -164,8 +165,10 @@
       timer = setInterval(function () { go(index + 1); }, 7000);
     }
 
-    hero.querySelector('[data-hero-prev]').addEventListener('click', function () { go(index - 1); });
-    hero.querySelector('[data-hero-next]').addEventListener('click', function () { go(index + 1); });
+    var heroPrev = hero.querySelector('[data-hero-prev]');
+    var heroNext = hero.querySelector('[data-hero-next]');
+    if (heroPrev) heroPrev.addEventListener('click', function () { go(index - 1); });
+    if (heroNext) heroNext.addEventListener('click', function () { go(index + 1); });
 
     render();
     restart();
@@ -174,16 +177,19 @@
   /* --- Rails de produits -------------------------------------------------- */
   document.querySelectorAll('[data-rail]').forEach(function (rail) {
     var scroller = rail.querySelector('[data-rail-scroller]');
+    if (!scroller) return;
 
     function step() {
       var card = scroller.querySelector('.card');
       return card ? card.getBoundingClientRect().width + 20 : 240;
     }
 
-    rail.querySelector('[data-rail-prev]').addEventListener('click', function () {
+    var railPrev = rail.querySelector('[data-rail-prev]');
+    var railNext = rail.querySelector('[data-rail-next]');
+    if (railPrev) railPrev.addEventListener('click', function () {
       scroller.scrollBy({ left: -step() * 2, behavior: 'smooth' });
     });
-    rail.querySelector('[data-rail-next]').addEventListener('click', function () {
+    if (railNext) railNext.addEventListener('click', function () {
       scroller.scrollBy({ left: step() * 2, behavior: 'smooth' });
     });
   });
@@ -300,7 +306,7 @@
         var row = document.createElement('div');
         row.className = 'drawer__item';
         row.innerHTML =
-          '<img src="' + item.img + '" alt="' + item.name + '">' +
+          (item.img ? '<img src="' + item.img + '" alt="' + item.name + '">' : '') +
           '<div class="drawer__item-info">' +
             '<p class="drawer__item-name">' + item.name + '</p>' +
             '<p class="drawer__item-price">' + item.price + '</p>' +

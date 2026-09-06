@@ -31,6 +31,12 @@
   }
 
   if (!p) p = list[0];
+  /* Filets de securite : un produit sans visuel ou sans description ne doit
+     jamais casser le script (sinon le bouton "Ajouter au panier" plus bas
+     n'est jamais branche). */
+  if (!p.imgs) p.imgs = [];
+  if (!p.desc) p.desc = [];
+  if (!p.crumbs) p.crumbs = ['Accueil'];
 
   var euro = function (n) { return n.toFixed(2).replace('.', ',') + '€'; };
   var setAll = function (attr, value) {
@@ -66,14 +72,16 @@
   var thumbs = document.querySelector('[data-thumbs]');
 
   function show(i) {
+    if (!mainImg) return;
     mainImg.src = p.imgs[i];
     mainImg.alt = p.name;
+    if (!thumbs) return;
     thumbs.querySelectorAll('button').forEach(function (b, j) {
       b.setAttribute('aria-current', i === j ? 'true' : 'false');
     });
   }
 
-  if (p.imgs.length) show(0); else mainImg.hidden = true;
+  if (p.imgs.length) show(0); else if (mainImg) mainImg.hidden = true;
 
   p.imgs.forEach(function (src, i) {
     var b = document.createElement('button');
@@ -92,19 +100,22 @@
     });
     b.appendChild(im);
     b.addEventListener('click', function () { show(i); });
-    thumbs.appendChild(b);
+    if (thumbs) thumbs.appendChild(b);
   });
 
   /* --- Description -------------------------------------------------------- */
   var desc = document.querySelector('[data-desc]');
-  if (p.desc.length) {
-    p.desc.forEach(function (t) {
-      var el = document.createElement('p');
-      el.textContent = t;
-      desc.appendChild(el);
-    });
-  } else {
-    desc.closest('details').hidden = true;
+  if (desc) {
+    if (p.desc.length) {
+      p.desc.forEach(function (t) {
+        var el = document.createElement('p');
+        el.textContent = t;
+        desc.appendChild(el);
+      });
+    } else {
+      var details = desc.closest('details');
+      if (details) details.hidden = true;
+    }
   }
 
   /* --- Avis --------------------------------------------------------------- */
@@ -117,21 +128,23 @@
       '<p class="stars">' + '★'.repeat(r.stars) + '</p>' +
       '<p class="review__meta">Par ' + r.author + ', le ' + r.date + '</p>' +
       '<p>' + r.text + '</p>';
-    box.appendChild(art);
+    if (box) box.appendChild(art);
   });
-  if (!p.reviews) document.getElementById('avis').hidden = true;
+  var avis = document.getElementById('avis');
+  if (!p.reviews && avis) avis.hidden = true;
 
   /* --- Rail "Pour vous" --------------------------------------------------- */
   var rail = document.querySelector('[data-related]');
   list.filter(function (x) { return x.slug !== p.slug; }).slice(0, 6).forEach(function (o) {
+    var cover = (o.imgs || [])[0];
     var a = document.createElement('a');
     a.className = 'card';
     a.href = 'product.html?p=' + o.slug;
     a.innerHTML =
-      '<div class="card__img">' + (o.imgs[0] ? '<img src="' + o.imgs[0].replace('/stencil/1000w/', '/stencil/500x500/') + '" alt="' + o.name + '" loading="lazy">' : '') + '</div>' +
+      '<div class="card__img">' + (cover ? '<img src="' + cover.replace('/stencil/1000w/', '/stencil/500x500/') + '" alt="' + o.name + '" loading="lazy">' : '') + '</div>' +
       '<p class="card__name">' + o.name + '</p>' +
       '<p class="card__price">' + euro(o.price) + '</p>';
-    rail.appendChild(a);
+    if (rail) rail.appendChild(a);
   });
 
   /* --- Panier : plusieurs articles possibles ------------------------------ */
@@ -140,13 +153,14 @@
   var addedTimer;
 
   function showAdded() {
+    if (!note) return;
     note.hidden = false;
     note.textContent = 'Ajouté à votre panier !';
     clearTimeout(addedTimer);
     addedTimer = setTimeout(function () { note.hidden = true; }, 2500);
   }
 
-  btn.addEventListener('click', function () {
+  if (btn) btn.addEventListener('click', function () {
     if (window.jcAddToCart) {
       window.jcAddToCart({
         slug: p.slug,
