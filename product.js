@@ -128,7 +128,7 @@
     a.className = 'card';
     a.href = 'product.html?p=' + o.slug;
     a.innerHTML =
-      '<div class="card__img"><img src="' + o.imgs[0].replace('/stencil/1000w/', '/stencil/500x500/') + '" alt="' + o.name + '" loading="lazy"></div>' +
+      '<div class="card__img">' + (o.imgs[0] ? '<img src="' + o.imgs[0].replace('/stencil/1000w/', '/stencil/500x500/') + '" alt="' + o.name + '" loading="lazy">' : '') + '</div>' +
       '<p class="card__name">' + o.name + '</p>' +
       '<p class="card__price">' + euro(o.price) + '</p>';
     rail.appendChild(a);
